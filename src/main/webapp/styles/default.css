@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color:#eaeaea;
+	width: 80%;
+	margin: 0 auto;
+	font-family: sans-serif;
+}
+
+nav ul{
+	list-style-type: none;
+}
+
+nav ul li{
+	display: block;
+	float: left;
+	padding: 0.5em;
+}
+
+h1{
+	font-size: 2.5em;
+}
+#logo{
+	width:100%;
+}
