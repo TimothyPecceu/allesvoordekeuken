@@ -20,18 +20,63 @@ public class Artikel implements Serializable{
 	private BigDecimal aankoopprijs;
 	private BigDecimal verkoopprijs;
 	
-	public long getId() {
-		return id;
+	public Artikel(String naam, BigDecimal aankoopprijs, BigDecimal verkoopprijs){
+		
+		setNaam(naam);
+		setAankoopprijs(aankoopprijs);
+		setVerkoopprijs(verkoopprijs);
+		
 	}
 	
-	public String getNaam() {
-		return naam;
+	protected Artikel(){}
+	
+	public static boolean isNaamValid(String naam){
+		return naam != null && !naam.isEmpty();
+	}
+	
+	public static boolean isAankoopprijsValid(BigDecimal aankoopprijs){
+		return aankoopprijs != null && aankoopprijs.compareTo(BigDecimal.ZERO) >=0;
+	}
+	
+	public static boolean isVerkoopprijsValid(BigDecimal verkoopprijs){
+		return verkoopprijs != null && verkoopprijs.compareTo(BigDecimal.ZERO) >= 0;
+	}
+
+	public static boolean isAankoopprijsVerkoopprijsValid(BigDecimal aankoopprijs, BigDecimal verkoopprijs){
+		return aankoopprijs.compareTo(verkoopprijs) <= 0;
+	}
+	public void setNaam(String naam) {
+		if(! isNaamValid(naam)){
+			throw new IllegalArgumentException();
+		}
+		this.naam = naam;
+	}
+
+	public void setAankoopprijs(BigDecimal aankoopprijs) {
+		if(! isAankoopprijsValid(aankoopprijs)){
+			throw new IllegalArgumentException();
+		}
+		this.aankoopprijs = aankoopprijs;
+	}
+
+	public void setVerkoopprijs(BigDecimal verkoopprijs) {
+		if(! isVerkoopprijsValid(verkoopprijs)){
+			throw new IllegalArgumentException();
+		}
+		this.verkoopprijs = verkoopprijs;
+	}
+	
+	public long getId() {
+		return id;
 	}
 	
 	public BigDecimal getAankoopprijs() {
 		return aankoopprijs;
 	}
-	
+	public String getNaam() {
+		return naam;
+	}
+
 	public BigDecimal getVerkoopprijs() {
 		return verkoopprijs;
 	}

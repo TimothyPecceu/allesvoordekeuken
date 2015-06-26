@@ -7,12 +7,11 @@ import be.vdab.filters.JPAFilter;
 
 public class ArtikelDAO {
 
-	public Artikel read(long id) {
-		EntityManager entityManager = JPAFilter.getEntityManager();
-		try {
-			return entityManager.find(Artikel.class, id);
-		} finally {
-			entityManager.close();
-		}
+	public Artikel read(long id, EntityManager entityManager) {
+		return entityManager.find(Artikel.class, id);
+	}
+	
+	public void create(Artikel artikel, EntityManager entityManager){
+		entityManager.persist(artikel);
 	}
 }
