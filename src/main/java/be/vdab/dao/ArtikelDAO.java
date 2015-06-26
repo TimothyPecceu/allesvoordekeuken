@@ -1,5 +1,7 @@
 package be.vdab.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import be.vdab.entities.Artikel;
@@ -13,5 +15,9 @@ public class ArtikelDAO extends AbstractDAO{
 	
 	public void create(Artikel artikel){
 		getEntityManager().persist(artikel);
+	}
+	
+	public List<Artikel> findByNameContains(String naam){
+		return getEntityManager().createNamedQuery("Artikel.findByName", Artikel.class).setParameter("naam", naam).getResultList();
 	}
 }

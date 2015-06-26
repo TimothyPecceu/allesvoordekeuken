@@ -1,5 +1,7 @@
 package be.vdab.services;
 
+import java.util.List;
+
 import be.vdab.dao.ArtikelDAO;
 import be.vdab.entities.Artikel;
 
@@ -15,5 +17,9 @@ public class ArtikelService {
 		artikelDAO.beginTransaction();
 		artikelDAO.create(artikel);
 		artikelDAO.commit();
+	}
+	
+	public List<Artikel> findByNameContains(String naam){
+		return artikelDAO.findByNameContains(naam);
 	}
 }
