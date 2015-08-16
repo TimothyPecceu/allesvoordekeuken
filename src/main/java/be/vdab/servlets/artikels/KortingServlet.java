@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import be.vdab.services.ArtikelService;
 
-@WebServlet("/artikels/zoekenopnaam.htm")
-public class ZoekenOpNaam extends HttpServlet {
+@WebServlet("/artikels/kortingen.htm")
+public class KortingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VIEW = "/WEB-INF/JSP/artikels/zoekenopnaam.jsp";
+	private static final String VIEW = "/WEB-INF/JSP/artikels/korting.jsp";
 	private final transient ArtikelService artikelService = new ArtikelService();
-			
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String woord = request.getParameter("woord");
-		if(woord != null){
-			request.setAttribute("artikels", artikelService.findByNameContains(woord));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setAttribute("artikels", artikelService.findAll());
+		String id = request.getParameter("id");
+		if (id != null) {
+			request.setAttribute("artikel", artikelService.read(Long.parseLong(id)));
 		}
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
-
 }
